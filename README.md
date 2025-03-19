@@ -1,13 +1,24 @@
-Tento program simuluje fungovanie pošty s viacerými zákazníkmi a úradníkmi pomocou zdieľanej pamäte a semaforov.
+# 🏤 Simulácia pošty
 
-Hlavné časti programu:
+Tento program simuluje fungovanie pošty so zákazníkmi a úradníkmi pomocou zdieľanej pamäte a semaforov.
 
-Spracovanie argumentov – Program prijíma 5 argumentov určujúcich počet zákazníkov (NZ), úradníkov (NU), a časy čakania/služieb (TZ, TU, F).
+## 📌 Spustenie programu
+Program sa spúšťa s nasledujúcimi argumentmi:
 
-Inicializácia zdieľanej pamäte a semaforov – Na synchronizáciu procesov sa používajú mmap na zdieľanie premenných a sem_t semafory.
+| Parameter | Popis |
+|-----------|--------------------------------------|
+| `NZ`      | Počet zákazníkov |
+| `NU`      | Počet úradníkov |
+| `TZ`      | Maximálna doba príchodu zákazníkov (ms) |
+| `TU`      | Maximálna doba obsluhy zákazníka (ms) |
+| `F`       | Maximálny čas, po ktorom sa pošta zatvorí (ms) |
 
-Spracovanie zákazníkov – Zákazníci prichádzajú na poštu a zaradia sa do jednej z troch čakacích radov.
+## 🛠 Implementácia
+- **Zdieľaná pamäť** pomocou `mmap`
+- **Synchronizácia procesov** pomocou `sem_t` semaforov
+- **Zákazníci** čakajú v radoch na služby
+- **Úradníci** vybavujú zákazníkov a môžu si vziať prestávku
 
-Obsluha úradníkmi – Úradníci náhodne vyberajú zákazníkov z radov a spracovávajú ich požiadavky. Ak nie sú zákazníci, môžu si vziať prestávku.
+## 🏁 Ukončenie simulácie
+Po zatvorení pošty a obslúžení všetkých zákazníkov program korektne ukončí procesy a uvoľní pamäť.
 
-Ukončenie simulácie – Po zatvorení pošty a vybavení všetkých zákazníkov úradníci odchádzajú domov.
